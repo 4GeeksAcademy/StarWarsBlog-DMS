@@ -7,46 +7,52 @@ import { Context } from "../store/appContext";
 
 const DataDisplay = () => {
     const {store, actions} = useContext(Context)
-    const [characters, setCharacters] = useState([]);
-    const [planets, setPlanets] = useState([]);
-    const [vehicles, setVehicles] = useState([]);
+    // const [characters, setCharacters] = useState([]);
+    // const [planets, setPlanets] = useState([]);
+    // const [vehicles, setVehicles] = useState([]);
 
-useEffect(() => {
-    actions.loadSomeData()
-
-    const intervalId = setInterval(() => {
-        console.log("update form store", store)
-        setCharacters([...store.characterList])
-        setVehicles([...store.vehiclesList])
-        setPlanets([...store.planetsList])
-    }, 1000)
+// useEffect(() => {
     
-    return () => clearInterval(intervalId)
-}, [actions, store])
-console.log("rendering with state", {characters, planets, vehicles})
+
+//     // const intervalId = setInterval(() => {
+//     //     console.log("update form store", store)
+//     //     setCharacters([...store.characterList])
+//     //     setVehicles([...store.vehiclesList])
+//     //     setPlanets([...store.planetsList])
+//     // }, 1000)
+    
+//     // return () => clearInterval(intervalId)
+// }, [])
+console.log("rendering with state", store.characterList)
 return (
     <Container>
-        <Row>
-            {characters.map((character, index) => (
-                <Col key={`${character.url}-${index}`} md={4}>
-                    <CharacterCard character={character} />
+        <h1>Characters</h1>
+        <hr />
+        <div className="d-flex gap-1 overflow-auto">
+            {store.characterList.map((character, index) => (
+                <Col key={`${character.url}-${index}`}>
+                    <CharacterCard character={character} id={index+1}/>
                 </Col>
             ))}
-        </Row>
-        <Row>
-        {planets.map((planet, index) => (
-                <Col key={`${planets.url}-${index}`} md={4}>
+        </div>
+        <h1>Planets</h1>
+        <hr />
+        <div className="d-flex gap-1 overflow-auto">
+        {store.planetsList.map((planet, index) => (
+                <Col key={`${planet.url}-${index}`}>
                     <PlanetCard planet={planet} />
                 </Col>
             ))} 
-        </Row>
-        <Row>
-        {vehicles.map((vehicle, index) => (
-                <Col key={`${vehicles.url}-${index}`} md={4}>
+        </div>
+        <h1>Vehicles</h1>
+        <hr />
+        <div className="d-flex gap-1 overflow-auto">
+        {store.vehiclesList.map((vehicle, index) => (
+                <Col key={`${vehicle.url}-${index}`}>
                     <VehicleCard vehicle={vehicle} />
                 </Col>
             ))} 
-        </Row>
+        </div>
     </Container>
 )
 }
