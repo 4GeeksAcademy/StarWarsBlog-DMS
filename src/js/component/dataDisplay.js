@@ -40,7 +40,7 @@ return (
         <div className="d-flex gap-1 overflow-auto">
         {store.planetsList.map((planet, index) => (
                 <Col key={`${planet.url}-${index}`}>
-                    <PlanetCard planet={planet} />
+                    <PlanetCard planet={planet} id={index+1}/>
                 </Col>
             ))} 
         </div>
@@ -49,7 +49,7 @@ return (
         <div className="d-flex gap-1 overflow-auto">
         {store.vehiclesList.map((vehicle, index) => (
                 <Col key={`${vehicle.url}-${index}`}>
-                    <VehicleCard vehicle={vehicle} />
+                    <VehicleCard vehicle={vehicle} id={index+1} />
                 </Col>
             ))} 
         </div>
