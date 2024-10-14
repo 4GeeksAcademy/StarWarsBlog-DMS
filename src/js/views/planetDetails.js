@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 
-const CharacterDetails = () => {
+const PlanetDetails = () => {
     const { id } = useParams()
-    const [characterDetails, setCharacterDetails] = useState();
+    const [planetDetails, setplanetDetails] = useState();
     useEffect(() => {
-        fetch("https://swapi.dev/api/people/" + id)
+        fetch("https://swapi.dev/api/planets/" + id)
             .then(res => {
                 if (!res.ok) {
                     throw new Error()
@@ -13,36 +13,36 @@ const CharacterDetails = () => {
                 return res.json()
             })
             .then(res => {
-                setCharacterDetails(res)
+                setplanetDetails(res)
             })
     })
     return (
         <div className="container">
             <div className="row">
                 <div className="col">
-                    <img src={`https://starwars-visualguide.com/assets/img/characters/${id
+                    <img src={`https://starwars-visualguide.com/assets/img/planets/${id
                         }.jpg`} />
                 </div>
                 <div className="col">
-                    <h1>Character {characterDetails && characterDetails.name}</h1>
+                    <h1>{planetDetails && planetDetails.name}</h1>
                     <p>Example lorem ipsum, using my own writing here, yada yada yada</p>
                 </div>
             </div>
             <div className="row text-danger">
                 <hr></hr>
                 <div>
-                    <h5>Hair Color</h5>
-                    <p>{characterDetails && characterDetails.hair_color}</p>
+                    <h5>Terrain</h5>
+                    <p>{planetDetails && planetDetails.terrain}</p>
                 </div>
 
                 <div>
-                    <h5>Skin Color</h5>
-                    <p>{characterDetails && characterDetails.skin_color}</p>
+                    <h5>Gravity</h5>
+                    <p>{planetDetails && planetDetails.gravity}</p>
                 </div>
 
                 <div>
-                    <h5>Height</h5>
-                    <p>{characterDetails && characterDetails.height}</p>
+                    <h5>Population</h5>
+                    <p>{planetDetails && planetDetails.population}</p>
                 </div>
 
 
@@ -54,4 +54,4 @@ const CharacterDetails = () => {
     )
 }
 
-export default CharacterDetails;
+export default PlanetDetails;
